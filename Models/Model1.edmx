@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Database1Model.Store.Admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="apps" EntityType="Database1Model.Store.apps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comment" EntityType="Database1Model.Store.comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="screens" EntityType="Database1Model.Store.screens" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="uni" EntityType="Database1Model.Store.uni" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="Database1Model.Store.users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_apps_ToTable_1" Association="Database1Model.Store.FK_apps_ToTable_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="apps" EntitySet="apps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_screens_ToTable" Association="Database1Model.Store.FK_screens_ToTable">
+            <End Role="apps" EntitySet="apps" />
+            <End Role="screens" EntitySet="screens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Database1Model.Store.FK_Table_ToTable">
+            <End Role="users" EntitySet="users" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable_1" Association="Database1Model.Store.FK_Table_ToTable_1">
+            <End Role="apps" EntitySet="apps" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_ToTable" Association="Database1Model.Store.FK_users_ToTable">
+            <End Role="uni" EntitySet="uni" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="adminname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="apps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="aname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="afile" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Icon" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="discription" Type="varchar(max)" Nullable="false" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="catagories" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="uploaddate" Type="date" Nullable="false" />
+          <Property Name="size" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="like" Type="int" />
+          <Property Name="rate" Type="int" />
+          <Property Name="rperson" Type="int" />
+          <Property Name="newthing" Type="varchar(max)" Nullable="false" />
+          <Property Name="numinstall" Type="int" Nullable="false" />
+          <Property Name="currentversion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="comment" Type="varchar(max)" Nullable="false" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="appid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="screens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="shot" Type="varchar(max)" />
+          <Property Name="appid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uni">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ranking" Type="int" />
+          <Property Name="ufile" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="fname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="lname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="dob" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="contactno" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="accountno" Type="varchar" MaxLength="50" />
+          <Property Name="pic" Type="varchar" MaxLength="100" />
+          <Property Name="uid" Type="int" />
+          <Property Name="weblink" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_apps_ToTable_1">
+          <End Role="users" Type="Database1Model.Store.users" Multiplicity="1" />
+          <End Role="apps" Type="Database1Model.Store.apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="apps">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_screens_ToTable">
+          <End Role="apps" Type="Database1Model.Store.apps" Multiplicity="1" />
+          <End Role="screens" Type="Database1Model.Store.screens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="screens">
+              <PropertyRef Name="appid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="users" Type="Database1Model.Store.users" Multiplicity="1" />
+          <End Role="comment" Type="Database1Model.Store.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable_1">
+          <End Role="apps" Type="Database1Model.Store.apps" Multiplicity="1" />
+          <End Role="comment" Type="Database1Model.Store.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="appid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_ToTable">
+          <End Role="uni" Type="Database1Model.Store.uni" Multiplicity="0..1" />
+          <End Role="users" Type="Database1Model.Store.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uni">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Database1Entities12" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Database1Model.Admin" />
+          <EntitySet Name="apps" EntityType="Database1Model.app" />
+          <EntitySet Name="comments" EntityType="Database1Model.comment" />
+          <EntitySet Name="screens" EntityType="Database1Model.screen" />
+          <EntitySet Name="unis" EntityType="Database1Model.uni" />
+          <EntitySet Name="users" EntityType="Database1Model.user" />
+          <AssociationSet Name="FK_apps_ToTable_1" Association="Database1Model.FK_apps_ToTable_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="apps" EntitySet="apps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_screens_ToTable" Association="Database1Model.FK_screens_ToTable">
+            <End Role="apps" EntitySet="apps" />
+            <End Role="screens" EntitySet="screens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable_1" Association="Database1Model.FK_Table_ToTable_1">
+            <End Role="apps" EntitySet="apps" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Database1Model.FK_Table_ToTable">
+            <End Role="users" EntitySet="users" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_ToTable" Association="Database1Model.FK_users_ToTable">
+            <End Role="uni" EntitySet="unis" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="adminname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="app">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="aname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="afile" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Icon" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="discription" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="catagories" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="uploaddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="size" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="like" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="rperson" Type="Int32" />
+          <Property Name="newthing" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="numinstall" Type="Int32" Nullable="false" />
+          <Property Name="currentversion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="user" Relationship="Database1Model.FK_apps_ToTable_1" FromRole="apps" ToRole="users" />
+          <NavigationProperty Name="screens" Relationship="Database1Model.FK_screens_ToTable" FromRole="apps" ToRole="screens" />
+          <NavigationProperty Name="comments" Relationship="Database1Model.FK_Table_ToTable_1" FromRole="apps" ToRole="comment" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="comment1" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="appid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="app" Relationship="Database1Model.FK_Table_ToTable_1" FromRole="comment" ToRole="apps" />
+          <NavigationProperty Name="user" Relationship="Database1Model.FK_Table_ToTable" FromRole="comment" ToRole="users" />
+        </EntityType>
+        <EntityType Name="screen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="shot" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="appid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="app" Relationship="Database1Model.FK_screens_ToTable" FromRole="screens" ToRole="apps" />
+        </EntityType>
+        <EntityType Name="uni">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ranking" Type="Int32" />
+          <Property Name="ufile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="Database1Model.FK_users_ToTable" FromRole="uni" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="fname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="lname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dob" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="contactno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="accountno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="pic" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="weblink" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="apps" Relationship="Database1Model.FK_apps_ToTable_1" FromRole="users" ToRole="apps" />
+          <NavigationProperty Name="comments" Relationship="Database1Model.FK_Table_ToTable" FromRole="users" ToRole="comment" />
+          <NavigationProperty Name="uni" Relationship="Database1Model.FK_users_ToTable" FromRole="users" ToRole="uni" />
+        </EntityType>
+        <Association Name="FK_apps_ToTable_1">
+          <End Role="users" Type="Database1Model.user" Multiplicity="1" />
+          <End Role="apps" Type="Database1Model.app" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="apps">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_screens_ToTable">
+          <End Role="apps" Type="Database1Model.app" Multiplicity="1" />
+          <End Role="screens" Type="Database1Model.screen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="screens">
+              <PropertyRef Name="appid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable_1">
+          <End Role="apps" Type="Database1Model.app" Multiplicity="1" />
+          <End Role="comment" Type="Database1Model.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="appid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="users" Type="Database1Model.user" Multiplicity="1" />
+          <End Role="comment" Type="Database1Model.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_ToTable">
+          <End Role="uni" Type="Database1Model.uni" Multiplicity="0..1" />
+          <End Role="users" Type="Database1Model.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uni">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities12">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="Database1Model.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="adminname" ColumnName="adminname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="apps">
+            <EntityTypeMapping TypeName="Database1Model.app">
+              <MappingFragment StoreEntitySet="apps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="aname" ColumnName="aname" />
+                <ScalarProperty Name="afile" ColumnName="afile" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="catagories" ColumnName="catagories" />
+                <ScalarProperty Name="uploaddate" ColumnName="uploaddate" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="like" ColumnName="like" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="rperson" ColumnName="rperson" />
+                <ScalarProperty Name="newthing" ColumnName="newthing" />
+                <ScalarProperty Name="numinstall" ColumnName="numinstall" />
+                <ScalarProperty Name="currentversion" ColumnName="currentversion" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="Database1Model.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="appid" ColumnName="appid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="screens">
+            <EntityTypeMapping TypeName="Database1Model.screen">
+              <MappingFragment StoreEntitySet="screens">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="shot" ColumnName="shot" />
+                <ScalarProperty Name="appid" ColumnName="appid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unis">
+            <EntityTypeMapping TypeName="Database1Model.uni">
+              <MappingFragment StoreEntitySet="uni">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="ranking" ColumnName="ranking" />
+                <ScalarProperty Name="ufile" ColumnName="ufile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Database1Model.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="accountno" ColumnName="accountno" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="weblink" ColumnName="weblink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
