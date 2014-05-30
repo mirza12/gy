@@ -1,0 +1,171 @@
+﻿@model TermProject.Models.app
+@{
+    Layout = "~/Views/Shared/" + Session["Layout"];
+    ViewBag.Title = "Details";
+    Session["appid"] = Model.Id;
+}
+
+<script type="text/javascript">
+
+    function add() {
+
+        var cmtt = $('#cmt').val();
+        
+        $.getJSON("/Account/Comment?cmmt=" + cmtt, function (data) {
+            if (data) {
+                    $('#mn1').append(
+        
+                                "<img class='media-object  col-md-1' src='@Model.user.pic'>"+
+                                "<h4 class='media-heading'>@Model.user.username</h4>"+
+                                cmtt 
+  
+                                );
+                
+            }
+            else {
+
+                $('#mn').text("Comment Failed.");
+
+            }
+        });
+    }
+
+    function like() {
+
+        $('#lk').empty();
+        $.getJSON("/Account/Like", function (data) {
+            if (data) { 
+                $('#lk').append("<button type='button' class='btn btn-info'>"+
+                "<span class='badge'>"+data+"</span>Like"+
+                "</button>");
+
+                }
+                else {
+
+                    $('#lk').text("Failed.");
+
+                }
+        });
+        }
+</script>
+<div id ="mn" class="container" style="margin-top:100px" >
+<div class="container" >
+<div class="row span9 well" style="margin-left:250px">
+  <div class="col-xs-6 col-md-3 " >
+    <a href="#" class="thumbnail">
+      <img data-src="holder.js/100%x180" src="@Model.Icon" alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <h4>@Model.aname</h4>
+        @{
+ 
+        }
+        
+       <h6> Size: @Model.size Bytes</h6>
+        <h6> Uploaded Date: @Model.uploaddate</h6>
+        <button type="button" class="btn btn-info">Install</button>
+  </div>
+</div>
+</div>
+
+<div class="container">
+<h3 style="margin-top:25px;margin-left:250px">Screen Short</h3>
+
+<div class="row span9 well" style="margin-top:25px;margin-left:250px" >
+  
+   @foreach(var f in Model.screens)
+    {
+        <div class="col-xs-6 col-md-3 " >
+    <a href="#" class="thumbnail">
+      <img data-src="holder.js/100%x180" src="@f.shot" alt="...">
+    </a>
+  </div>
+    }
+</div>
+</div>
+<div class="container">
+<h3 style="margin-top:25px;margin-left:250px">Description</h3>
+
+<div class="row span9 well" style="margin-top:25px;margin-left:250px" >
+  
+  <h6>@Model.discription</h6>  
+</div>
+</div>
+<div class="container">
+<h3 style="margin-top:25px;margin-left:250px"> Reviews</h3>
+ 
+<div class="row span9 well" style="margin-left:250px" >
+  <div class=" span4 row " >
+  
+    <input type="text" class="form-control" id="cmt" style="width:500px" placeholder="Write a comment">  
+       <button type="button" class="btn btn-info" id="bb" onclick="add();">comment</button>
+    </div>
+    
+    <div id="lk">
+        
+        <button type="button" class="btn btn-info " onclick="like();"><span class="badge">@Model.like</span>Like
+        
+</button>
+    </div>
+    @foreach(var f in Model.comments)
+    {
+        
+        <div class="media col-xs-12">
+        <img class="media-object  col-md-1" src="@Model.user.pic">
+    <h5 class="media-heading">@Model.user.username</h5>
+    @f.comment1
+
+</div>
+        
+    } 
+    <div class="media" id="mn1">
+            </div>
+    
+</div>
+</div>
+<div class="container">
+<h3 style="margin-top:25px;margin-left:250px">What's New</h3>
+
+<div class="row span9 well" style="margin-top:25px;margin-left:250px" >
+  
+  <h6>@Model.newthing</h6>  
+</div>
+</div>
+
+<div class="container">
+<h3 style="margin-top:25px;margin-left:250px">More Information</h3>
+
+<div class="row span9 well" style="margin-top:25px;margin-left:250px" >
+  <div class="col-xs-6 col-md-3">
+  <h5> Developer Name: </h5><h6>@Model.user.username</h6>
+      </div>
+    <div class="col-xs-6 col-md-3">
+   <h5> Developer Website: </h5> <h6>@Model.user.weblink</h6>
+        </div>
+    <div class="col-xs-6 col-md-3">
+   <h5> Current Version: </h5> <h6>@Model.currentversion</h6>
+        </div>
+    <div class="col-xs-6 col-md-3">
+   <h5> Total Install Times: </h5> <h6>@Model.numinstall</h6>
+        </div>
+</div>
+</div>
+
+    </div>
+
+<div class="modal fade" id="comment_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+        <h4 class="modal-title" id="myModalLabel1">Comment</h4>
+      </div>
+      <div class="modal-body">
+          
+  
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

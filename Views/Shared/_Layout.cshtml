@@ -1,0 +1,242 @@
+﻿@model List<TermProject.Models.app>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<script src ="http://code.jquery.com/jquery-2.1.0.js"></script>*@
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"> </script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        function chk() {
+
+            var userName = $('#uname1').val();
+            $.getJSON("/Home/checkValidity?ume=" + userName, function (data) {
+                if (data) {
+                    
+                    $('#result').text("UserName is Already Exist");
+                    return false;
+            
+                }
+                else {
+                    $('#result').text("User Name is Available");
+                    return true
+
+                }
+            });
+        }
+
+        function info() {
+            var vl = $('#type').val();
+            if (vl == "developer") {
+                $('#sbtn').hide();
+                $('#mn1').empty();
+                $('#mn').append(
+                    $('#mn1').append(
+                    "<div class='form-group'>" +
+        "<label for='accountno' class='col-sm-2 control-label'>Account Number</label>" +
+        "<div class='col-sm-10'>" +
+          "<input type='text' class='form-control' id=accountno' name='accountno' placeholder='123-1234-444-5' required>" +
+        "</div>" +
+      "</div>" +
+      "<div class='form-group'>" +
+      "<label for='weblink' class='col-sm-2 control-label'>Web Link</label>" +
+        "<div class='col-sm-10'>" +
+          "<input type='text' class='form-control' id=weblink' name='weblink' placeholder='www.appstocker.com'>" +
+        "</div>" +
+      "</div>" +
+      "<div class='form-group'>"+
+    "<label for='orgnization' class='col-sm-2 control-label'>Orgnization Name</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='text' class='form-control' id='orgnization' name='uname' placeholder='ABC Solutions'>"+
+    "</div>"+
+  "</div>"+
+
+      "<div class='form-group' id='sbtn1'>" +
+       "<div class='col-sm-offset-2 col-sm-10'>" +
+          "<button type='submit' class='btn btn-info'>Sign Up</button>" +
+        "</div>" +
+      "</div>"
+      )
+      );
+      }
+            else {
+                $('#sbtn').hide();
+                $('#mn1').empty();
+                $('#mn').append(
+                    $('#mn1').append(
+
+      "<div class='form-group' id='sbtn1'>" +
+       "<div class='col-sm-offset-2 col-sm-10'>" +
+          "<button type='submit' class='btn btn-info'>Sign Up</button>" +
+        "</div>" +
+      "</div>"
+      )
+      );
+            }
+        }
+       
+
+
+    </script>
+</head> 
+<body>
+    
+
+    <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="~/Home/index"><img style="height:50px; width:70px" src="~/Images/logo1.jpg"><strong>APPSTOCKER</strong></a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-toggle="modal" data-target="#login_modal"><h6>Login</h6></a></li>
+            <li><a href="#" data-toggle="modal" data-target="#reg_modal"><h6>Register</h6></a></li>
+        </ul>
+
+        </div>
+      </div>
+    </nav>
+
+
+               <!--Registration Modal -->
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel1">Login</h4>
+      </div>
+      <div class="modal-body">
+
+       <form class="form-horizontal" role="form" method="post" action="/Home/login">
+  <div class="form-group">
+    <label for="uname" class="col-sm-2 control-label">User Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="uname" name="username" placeholder="UserName" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-info">Login</button>
+    </div>
+  </div>
+</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+               <!--login Modal -->
+<div class="modal fade" id="reg_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Registration</h4>
+      </div>
+      <div class="modal-body">
+
+        <form class="form-horizontal" role="form" method="post" action="/Home/SignUp" id="mn">
+            <div class="form-group">
+    <label for="uname1" class="col-sm-2 control-label">User Name</label>
+                
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="uname1" name="username" onchange="chk();" placeholder="Rehan123" required>
+        <div id="result">
+                </div>
+    </div>
+  </div>
+            <div class="form-group">
+    <label for="fname" class="col-sm-2 control-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="Rehan" required>
+    </div>
+  </div>
+ <div class="form-group">
+    <label for="lname" class="col-sm-2 control-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="Munir" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password1" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password1" name="password" placeholder="Password" required>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="type" class="col-sm-2 control-label">Type</label>
+    <div class="col-sm-10">
+        <select id="type" class="form-control" name="type" onchange="info();">
+    <option value="user">User</option>
+    <option value="developer">Developer</option>
+</select>
+    </div>
+  </div>
+<div id="mn1">
+    </div>
+  <div class="form-group" id="sbtn">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-info">Sign Up</button>
+    </div>
+  </div>
+</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+    @RenderBody()
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+ <footer>
+<div class="foot-fixed-bottom ">
+<div class="container">
+   <hr>
+    <ul class=" nav navbar-nav">
+<li><a href="#"><strong>About Us</strong></a></li>
+    <li><a href="#"><strong>Terms and Conditions</strong></a></li>
+    <li><a href="#"><strong> Privacy Policy </strong></a></li>
+    <li><a href="#"><strong> Developers </strong></a></li>
+     <li><a><strong>©2014 AppStocker</strong></a></li>
+        </ul>
+    
+</div>
+</div>
+</footer>
+</body> 
+</html>

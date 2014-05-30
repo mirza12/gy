@@ -1,0 +1,29 @@
+﻿
+@model List<TermProject.Models.app>
+@{
+    Layout = "~/Views/Shared/" + Session["Layout"];
+    ViewBag.Title = "Account";
+}
+<div class="container" style="margin-top:100px" id="mn">
+    
+<div class="row span9" style="margin-left:175px" >
+    <h4 style="margin-left:47px"> Welcome to AppStocker</h4>
+    @foreach (var x in Model)
+    {
+  <div class="col-sm-6 col-md-3" style="margin-left:25px"  >
+    <div class="thumbnail">
+      <img data-src="holder.js/300x200" src="@x.Icon" alt="">
+      <div class="caption">
+        <h4>@x.aname</h4>
+        <p><span class="badge">@x.type</span>
+            <form action="~/Account/AppDetails" method="post" role="form">
+              @Html.ActionLink("Details", "AppDetails", new { id = x.Id})
+          </form></p>
+      </div>
+    </div>
+  </div>
+        
+    }
+  
+</div>
+    </div>

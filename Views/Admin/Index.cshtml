@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+    ViewBag.Title = "Home";
+}
+
+<script src="~/Scripts/jquery.fullscreenr.js"></script>
+<script src="~/Scripts/jquery-1.2.6.min.js"></script>
+<link href="~/Content/style.css" rel="stylesheet" />
+
+@* /////////// Slider Script ///////////*@
+
+<script type="text/javascript">
+
+    function slideSwitch() {
+        var $active = $('#slideshow IMG.active');
+
+        if ($active.length == 0) $active = $('#slideshow IMG:last');
+
+        // use this to pull the images in the order they appear in the markup
+        var $next = $active.next().length ? $active.next()
+            : $('#slideshow IMG:first');
+
+        // uncomment the 3 lines below to pull the images in random order
+
+        // var $sibs  = $active.siblings();
+        // var rndNum = Math.floor(Math.random() * $sibs.length );
+        // var $next  = $( $sibs[ rndNum ] );
+
+
+        $active.addClass('last-active');
+
+        $next.css({ opacity: 0.0 })
+            .addClass('active')
+            .animate({ opacity: 1.0 }, 1000, function () {
+                $active.removeClass('active last-active');
+            });
+    }
+
+    $(function () {
+        setInterval("slideSwitch()", 2000);
+    });
+
+</script>
+@* /////////// Slider Script ///////////*@
+
+
+
+<div id="content" style="margin-top: 200px">
+
+    <p>
+        Welcome to Admin Pannel
+    </p>
+
+    <p>
+        Click Login Button to Get Access.
+    </p>
+
+</div>
+<!--end of content-->
+
+<!-- this will work with any number of images -->
+<!-- set the active class on whichever image you want to show up as the default 
+(otherwise this will be the last image) -->
+<div id="slideshow" style="height:auto">
+    <img src="Images/image1.jpg" alt="Android" class="active" />
+    <img src="Images/image2.png" alt="Android" />
+    <img src="Images/image3.jpg" alt="Android" />
+    <img src="Images/image4.jpg" alt="Android" />
+    <img src="Images/image5.jpg" alt="Android" />
+</div>
